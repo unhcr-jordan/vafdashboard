@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Wash Sector | VAF matrix by geographical area </title>
+    <title>WASH sector vulnerability distribution </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/styles.css" media="screen">
     <link rel="stylesheet" href="css/style-chosen.css">
@@ -68,6 +68,8 @@
 		  display: none;
 		  
 		}
+		
+	
 		
 		#key line {
 		  stroke: #000;
@@ -148,7 +150,7 @@
 			@media (min-width: 768px) {
 		
 		#key {
-			width:140px;
+			width:255px;
 			height:500px;
 		}
 		
@@ -258,33 +260,19 @@
                         <img src="img/wash.svg" width=100px>
                     </center>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-10" style="padding-right:10px; padding-left:10px; padding-top:5px; padding-bottom:20px">
                    <!-- <center> </center> -->
-                        <h3><strong>Wash Sector | VAF matrix by geographical area 
+                        <h3><strong>WASH sector vulnerability distribution 
                           <a href="index.html"  target="_blank"><i class="icon-im-coord" style="color:white; font-size:20px;" ></i></a></strong></h3>
-                        The data presented here are collected through the at the registration stage by UNHCR and during home visits by UN agencies and NGOs. <br />
-						From the regularly updated database ‘vulnerability profile’ is generated based on different vulnerabilty thresholds. <br>
-                        <strong>The following map shows the vulnerabilty thresholds (High + Severe) of the WASH sector. </strong><br><BR>
+								The following map shows the percentage of Highly and Severely vulnerable cases for the WASH sector.
+								The vulnerability profile for a case is calculated on a number of different factors. <br>						  
+								Areas in grey have fewer than 50 cases. <br>
+								<b> Source data: Collected during registration by UNHCR and during home visits by UN agencies and NGOs. 
+								Date Range: </b>
+                        
                         
                 </div>
-                <div class="col-md-3">
-                    <div class="row" align=right>
-					<br>
-                        <div class="socialmedia" data-step="11" data-intro="Feel Free to share if you like it!" data-position="left">
-                            <table width = "50%">
-                              <tbody>
-                                  <tr>
-                                    <td valign="middle"><a href="http://www.facebook.com/sharer.php?u=http://data.unhcr.org/jordan/sectors/shelter" target="_blank">
-                                        <img src="img/Facebook.png" style="height: 25px; width: 25px"></a></td>
-                                    <td valign="middle"><a href="https://twitter.com/intent/tweet?url=http://data.unhcr.org/jordan/sectors/shelter&amp;text=%23jordan%20@Refugees" target="_blank">
-                                        <img src="img/Twitter.png" style="height: 25px; width: 25px"></a></td>
-                                    <td valign="middle"><a href="https://plus.google.com/share?&amp;hl=en&amp;url=http://data.unhcr.org/jordan/sectors/shelter" target="_blank">
-                                        <img src="img/Google.png" style="height: 25px; width: 25px"></a></td>
-                                  </tr>
-                            </tbody></table><br>
-                        </div>
-                    </div>
-                </div>				
+		
             </div>
 		<div class="col-xs-12" id="disc1" align="right">
 			<a href="#" onclick="return show('disc2','disc1');"> Disclaimer	&#9660</a>

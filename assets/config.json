@@ -1,11 +1,11 @@
 {"ons":{
-"varlabel": ["Access to Facilities","Access to Hygiene Facilities"," Access to Safe Water"," Solid Waste Management"," VAF", " WASH Related Health"," Waste Water Management"],
+"varlabel": ["WASH", "Access to Facilities","Access to Hygiene Facilities"," Access to Safe Water"," Solid Waste Management", " WASH Related Health"," Waste Water Management"],
 "varcolour": "BuPu[5]",
-"varname": ["ATF","AHF","ATSW","SWM","VAF","WWM","WRH"],
+"varname": ["VAF","ATF","AHF","ATSW","SWM","WWM","WRH"],
 "varload": "VAF",
-"varunit":["% ( High + Severe ) - Access to Facilities","% ( High + Severe ) - Access to Hygiene Facilities","% ( High + Severe ) - Access to Safe Water","% ( High + Severe ) - Solid Waste Management", "% ( High + Severe ) - VAF","% ( High + Severe ) - WASH Related Health","% ( High + Severe ) - Waste Water Management"],
+"varunit":["% ( High + Severe ) - WASH","% ( High + Severe ) - Access to Facilities","% ( High + Severe ) - Access to Hygiene Facilities","% ( High + Severe ) - Access to Safe Water","% ( High + Severe ) - Solid Waste Management", "% ( High + Severe ) - WASH Related Health","% ( High + Severe ) - Waste Water Management"],
 "varprefix":["","","","","","",""],
-"average":[ 14.46, 1.88, 4.92, 67.50, 90.26, 20.86, 9.53],
+"average":[ 90.26, 14.46, 1.88, 4.92, 67.50, 20.86, 9.53],
 "averagelabel":" Average (%)"
 }}
 
