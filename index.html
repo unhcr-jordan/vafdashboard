@@ -1,38 +1,366 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>Vafdashboard by unhcr-jordan</title>
+    <meta charset="utf-8">
+    <title>Wash Sector | VAF matrix by geographical area </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" href="css/styles.css" media="screen">
+    <link rel="stylesheet" href="css/style-chosen.css">
+
+    
+    <style>
+		
+		body {
+			font-family:open_sanslight, Arial, Helvetica, sans-serif;
+			color:#666;
+		}
+		
+		@font-face {
+			font-family: 'open_sanslight';		
+			src: url('assets/OpenSans-Light-webfont.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		
+		}
+		
+		@font-face {
+			font-family: 'open_sansitalic';		
+			src: url('assets/OpenSans-Italic-webfont.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		
+		}
+		
+		@font-face {
+			font-family: 'open_sansregular';		
+			src: url('assets/OpenSans-Regular-webfont.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		
+		}
+		
+		@font-face {
+			font-family: 'open_sanssemibold';		
+			src: url('assets/OpenSans-Semibold-webfont.woff') format('woff');
+			font-weight: normal;
+			font-style: normal;
+		
+		}
+		
+		.foot {
+			font-size:12px;
+		}
+		
+		.geogg {
+			
+			stroke:#ccc;
+			stroke-width:0.5px;
+			
+		
+		}
+		
+		#map {
+			/*width:500px;*/
+			margin:0px auto;	
+		}
+		
+		#key path {
+		  display: none;
+		  
+		}
+		
+		#key line {
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+		
+		#key g {
+			font-size:11px;
+			fill:#666;
+		}
+		
+		#key rect {
+			stroke:#666;
+			stroke-width:0.5px;
+			z-index:+1;
+		}
+		
+		#areaname {
+			text-align:center;
+			height:55px;
+		}
+		
+		@media (min-width: 768px) {
+		#areanm
+		{	
+			
+			font-size:20px;
+			color:#666;
+			min-width:1%;
+			font-family:open_sanssemibold, Arial, Helvetica, sans-serif;
+			text-align:center;
+			
+		}
+
+		#areainfo
+		{	
+			
+			font-size:22px;
+			color:#666;
+			font-family:open_sanssemibold, Arial, Helvetica, sans-serif;
+		}
+		
+		}
+		
+		@media (max-width: 767px) {
+		#areanm
+		{	
+			
+			font-size:16px;
+			color:#666;
+			font-family:open_sanssemibold, Arial, Helvetica, sans-serif;
+
+		}
+	
+		#areainfo
+		{	
+			
+			font-size:16px;
+			color:#666;
+			font-family:open_sanssemibold, Arial, Helvetica, sans-serif;
+
+		}
+
+		#areainfo span
+		{	
+			
+			font-size:12px;
+		}
+		
+
+		}
+
+		
+		#chosensel {
+			height:50px;	
+		}
+
+			@media (min-width: 768px) {
+		
+		#key {
+			width:140px;
+			height:500px;
+		}
+		
+
+		}
+		
+		@media (max-width: 767px) {
+	
+		#key {
+			width:100%;
+			height:60px;
+		}
+		}
+		
+		
+		/* Zoom CSS */
+
+		.zoom-control-zoom a, .zoom-control-layers-toggle {
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		display: block;
+		}
+		.zoom-control-zoom a {
+		width: 22px;
+		height: 22px;
+		text-align: center;
+		text-decoration: none;
+		color: #5381ca;
+		}
+		
+		.zoom-control-zoom-in {
+		cursor:pointer;
+		font: bold 18px/24px Arial, Helvetica, sans-serif;
+		}
+		
+		.zoom-control-zoom-in:hover {
+			color: #fff;
+			background-color: #5381ca;	
+		}
+		.zoom-bar-part-top {
+		}
+		.zoom-bar-part {
+		background-color: rgba(255, 255, 255, 0.8);
+		border-bottom: 1px solid #aaa;
+		}
+		
+		.zoom-control-zoom-out {
+		cursor:pointer;
+		font: bold 23px/20px Tahoma, Verdana, sans-serif;
+		}
+		
+		.zoom-control-zoom-out:hover {
+			color: #fff;
+			background-color: #5381ca;	
+		}
+		.zoom-bar-part-bottom {
+		border-bottom: none;
+		}
+		
+		.zoom-container {
+		margin-left: 13px;
+		margin-top: 0px;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		}
+		
+		.zoom-bar {
+		
+		border: 1px solid #59a4da;
+		}
+		.zoom-popup-pane, .zoom-control {
+		cursor: auto;
+		}
+		.zoom-control {
+		float: left;
+		clear: both;
+		}
+		.zoom-control {
+		
+		z-index: 7;
+		pointer-events: auto;
+		}
+		
+		.average {
+			font-family:open_sanssemibold, Arial, Helvetica, sans-serif;	
+		}
+	
+	</style>
+
+	<script>
+		function show(shown, hidden) {
+		  document.getElementById(shown).style.display='block';
+		  document.getElementById(hidden).style.display='none';
+		  return false;
+		}
+	</script>
   </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Vafdashboard</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/unhcr-jordan/vafdashboard" class="btn">View on GitHub</a>
-      <a href="https://github.com/unhcr-jordan/vafdashboard/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/unhcr-jordan/vafdashboard/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+  <body id="childt">
 
-    <section class="main-content">
-      <h1>
-<a id="vafdashboard" class="anchor" href="#vafdashboard" aria-hidden="true"><span class="octicon octicon-link"></span></a>VAFDashboard</h1>
+      
+   <div class="container-fluid">
+   <div id="graphic">Loading graphic...</div>
+               <div class="row" style="background-color: #766aab; color: #ffffff">
+                <div class="col-md-1" style="position:relative;top:22px">
+                    <center >
+                        <img src="img/wash.svg" width=100px>
+                    </center>
+                </div>
+                <div class="col-md-8">
+                   <!-- <center> </center> -->
+                        <h3><strong>Wash Sector | VAF matrix by geographical area 
+                          <a href="index.html"  target="_blank"><i class="icon-im-coord" style="color:white; font-size:20px;" ></i></a></strong></h3>
+                        The data presented here are collected through the at the registration stage by UNHCR and during home visits by UN agencies and NGOs. <br />
+						From the regularly updated database ‘vulnerability profile’ is generated based on different vulnerabilty thresholds. <br>
+                        <strong>The following map shows the vulnerabilty thresholds (High + Severe) of the WASH sector. </strong><br><BR>
+                        
+                </div>
+                <div class="col-md-3">
+                    <div class="row" align=right>
+					<br>
+                        <div class="socialmedia" data-step="11" data-intro="Feel Free to share if you like it!" data-position="left">
+                            <table width = "50%">
+                              <tbody>
+                                  <tr>
+                                    <td valign="middle"><a href="http://www.facebook.com/sharer.php?u=http://data.unhcr.org/jordan/sectors/shelter" target="_blank">
+                                        <img src="img/Facebook.png" style="height: 25px; width: 25px"></a></td>
+                                    <td valign="middle"><a href="https://twitter.com/intent/tweet?url=http://data.unhcr.org/jordan/sectors/shelter&amp;text=%23jordan%20@Refugees" target="_blank">
+                                        <img src="img/Twitter.png" style="height: 25px; width: 25px"></a></td>
+                                    <td valign="middle"><a href="https://plus.google.com/share?&amp;hl=en&amp;url=http://data.unhcr.org/jordan/sectors/shelter" target="_blank">
+                                        <img src="img/Google.png" style="height: 25px; width: 25px"></a></td>
+                                  </tr>
+                            </tbody></table><br>
+                        </div>
+                    </div>
+                </div>				
+            </div>
+		<div class="col-xs-12" id="disc1" align="right">
+			<a href="#" onclick="return show('disc2','disc1');"> Disclaimer	&#9660</a>
+		</div>
+        <div class="col-xs-12" id="disc2" style="display:none">
+			<div align="right">	<a href="#" onclick="return show('disc1','disc2');"> Disclaimer	&#9650</a> </div>
+			 <div class="col-md-11" align=left>
+				&nbsp; &nbsp; Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... Disclaimer comes here..... 
+			<br><br>
+			</div>	
+		</div>							
+   <div class="row" id="navigation">
+   
+          <div class="col-sm-12 hidden-xs" id="pills">
+          </div>
+          
+          <div class="col-xs-12 visible-xs">
+              <div class="btn-group btn-group col-xs-12" role="group" id="menu">
+                
+                  <button id="varsel" class="btn btn-primary dropdown-toggle btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">Dropdown<span class="caret"></span>
+                  </button>      
+              </div>
+          </div>
 
-<h1>
-<a id="vaf-matrix-by-geographical-area" class="anchor" href="#vaf-matrix-by-geographical-area" aria-hidden="true"><span class="octicon octicon-link"></span></a>VAF matrix by geographical area</h1>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/unhcr-jordan/vafdashboard">Vafdashboard</a> is maintained by <a href="https://github.com/unhcr-jordan">unhcr-jordan</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
+          
+          
+         <!-- <div class="col-sm-3" id="selectarea">
+          		<div id="chosensel"></div>-->
+         
+            
+   </div>
   
+    <div class="row" id="areadrop">
+          <div class="col-sm-9 col-xs-12" id="areaname">
+                <div id="areanm"></div>
+                <div id="areainfo"></div>
+          </div>
+      <div class="col-sm-3 col-xs-12" id="chosensel">
+      </div>
+	</div>
+
+
+   
+   <div class="row">
+          <div id="mapPane" class="col-sm-10 col-xs-12">
+          	<div id="map">
+            </div>
+          </div>
+          <div class="col-sm-2 col-xs-12">
+          	<div id="key"></div>
+          </div>
+	</div><!-- end row --> 
+    
+    
+     </div>
+            <div class="row" style="background-color: #766aab; color: #FFFFFF">
+                <div class="col-md-12" style="pposition:relative;top:3px">
+                    <p align=right><strong>Produced by Information Management Unit, UNHCR, Jordan. For more information please
+                    contact <a href="http://data.unhcr.org/jordan/team.html" target="_blank" ><font color=#FFFFFF> our team </font></a>. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p>
+                </div>
+            </div>	 
+	 <!--end container -->
+
+<!-- Constant libraries / frameworks -->
+    <script src="js/jquery.js"></script>
+    <script src="js/chosen.jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+ 	<script src="js/modernizr.custom.56904.js"></script>
+    <script src="js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/queue.js" charset="utf-8"></script>
+    <script src="js/ss.js"></script>
+    <script src="js/topojson.js"></script>
+    <script src="js/pym.js" charset="utf-8"></script>
+    <script src="js/colorbrewer.js" charset="utf-8"></script>
+    <script src="js/script.js" charset="utf-8"></script>
+
+
   </body>
 </html>
