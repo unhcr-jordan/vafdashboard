@@ -65,10 +65,10 @@
 	// Have a look here for options - https://github.com/mbostock/d3/wiki/Geo-Projections
 
 	var projection = d3.geo.albers()
-		.center([40.5, 31.9])
+		.center([40, 32.0])
 		.rotate([3.2, 1])
 		.parallels([1, 1])
-		.scale(8200)
+		.scale(8500)
 		.translate([width / 2, height / 2]);
 
 	// Set up a scaling variable effectively tells D3 how to interpret your lat - long coordinates into pixel positions.	
@@ -132,7 +132,6 @@
 		  .style("fill", function(d) {if (typeof(color(rateById[d.properties.AREACD])) != "undefined") { return color(rateById[d.properties.AREACD]); }else {return "#e0e0e0"}})
 		  .on("mouseout",unhighlight)
 		  .on("mouseover",function(d){highlight(d.properties.AREACD)});
-		  
 
 
 	svg.call(zoom)
